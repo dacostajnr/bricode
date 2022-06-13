@@ -1,6 +1,10 @@
-FROM python:3.9
-RUN  mkdir WORK_REPO
-RUN  cd  WORK_REPO
-WORKDIR  /WORK_REPO
-ADD main.py .
-CMD ["python", "-u", "main.app_handler"]
+# python3.8 lambda base image
+FROM public.ecr.aws/lambda/python:3.8
+# copy requirements.txt to container
+##COPY requirements.txt ./
+# installing dependencies
+##RUN pip3 install -r requirements.txt
+# Copy function code to container
+COPY main.py ./
+# setting the CMD to your handler file_name.function_name
+CMD [ "main.handler" ]
